@@ -153,7 +153,7 @@ async function editBlog(req, res) {
     var body = req.body.body
     var title = req.body.title
     var description = req.body.description
-    var tags = req.body.tags
+    var tags = req.body.tags || `#${ title.toLowerCase()}`
     var author = req.body.author
     var wpm = 225;
     if (body) {
