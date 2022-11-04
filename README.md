@@ -31,7 +31,7 @@ update env with example.env
 
 ---
 ## Base URL
-- somehostsite.com
+- https://blogging--api.herokuapp.com/
 
 
 ## Models
