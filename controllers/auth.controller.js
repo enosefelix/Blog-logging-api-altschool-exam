@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken')
 const passport = require('passport')
 require('dotenv').config()
+require('dotenv').config({ path: 'example.env' })
 
 function signup(req, res) {
     try {

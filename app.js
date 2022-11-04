@@ -1,7 +1,8 @@
-// require('dotenv').config()
 const express = require('express')
 const { connectMongoDB } = require('./db/db')
 const app = express()
+require('dotenv').config({ path: 'example.env' })
+require('dotenv').config()
 const port = process.env.PORT || 3000;
 const passport = require('passport')
 const authRouter = require('./routes/auth.route')

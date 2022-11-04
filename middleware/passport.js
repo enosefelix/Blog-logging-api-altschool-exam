@@ -4,13 +4,13 @@ const { userModel } = require('../models/auth.model')
 const JWTstrategy = require('passport-jwt').Strategy;
 const ExtractJWT = require('passport-jwt').ExtractJwt;
 require('dotenv').config()
+require('dotenv').config({ path: 'example.env' })
 const moment = require('moment')
 
 passport.use(
     new JWTstrategy(
         {
             secretOrKey: process.env.SECRET,
-            // jwtFromRequest: ExtractJWT.fromUrlQueryParameter('token')
             jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken()
         },
         async function (token, next) {

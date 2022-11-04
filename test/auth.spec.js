@@ -66,7 +66,6 @@ describe("User: POST /login", () => {
       .post("/login")
       .set("content-type", "application/json")
       .send( data )
-    // console.log(res.body)
     expect(res.status).toBe(200)
     expect(res.body).toHaveProperty('message')
     expect(res.body).toHaveProperty('token')
