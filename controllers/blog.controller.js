@@ -95,7 +95,7 @@ async function addBlog(req, res) {
             title: req.body.title,
             description: req.body.description,
             tags: `#${title.toLowerCase()}` || tags.toLowerCase(),
-            author: author || email,
+            author: author || req.user._id,
             timestamp: moment().toDate(),
             body: body,
             reading_time: `${time}min`
