@@ -94,7 +94,7 @@ async function addBlog(req, res) {
         const blog = await blogModel.create({
             title: req.body.title,
             description: req.body.description,
-            tags: `#${title.toLowerCase()}` || tags.toLowerCase(),
+            tags: `#${title.toLowerCase()}` || tags,
             author: author || req.user._id,
             timestamp: moment().toDate(),
             body: body,
