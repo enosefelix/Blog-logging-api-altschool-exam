@@ -154,13 +154,18 @@ async function editBlog(req, res) {
     var title = req.body.title
     var description = req.body.description
     var tags = req.body.tags
+    var author = req.body.author
     var wpm = 225;
-    var words = body.trim().split(/\s+/).length;
-    var time = Math.ceil(words / wpm);
-    var user = await blogModel.findByIdAndUpdate(id, { "body": body, "title": title, "description": description, "tags": tags, "reading_time": time }, { new: true })
+    if (body) {
+        var words = body.trim().split(/\s+/).length;
+        var time = Math.ceil(words / wpm);
+        var blog = await blogModel.findByIdAndUpdate(id, { "body": body, "title": title, "description": description, "tags": tags, "author": author, "reading_time": time }, { new: true })
+    } else {
+        var blog = await blogModel.findByIdAndUpdate(id, {"title": title, "description": description, "tags": tags, "author": author}, { new: true })
+    }
     return res.status(200).json({
         message: "Blog updated successfully",
-        blog: user
+        blog: blog
     })
 }
 
