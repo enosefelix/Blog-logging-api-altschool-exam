@@ -108,7 +108,6 @@ async function addBlog(req, res) {
         blog.user = user
         await user.save()
         await blog.save()
-        console.log
         return res.status(200).json({
             message: "blog added successfully",
             blog: {
@@ -190,7 +189,6 @@ async function getBlogById(req, res) {
         else {
             const userId = await blog.user._id
             const user = await userModel.findById(userId)
-            console.log(`user ${userId}`)
             blog.read_count++
             await blog.save()
             return res.status(200).json({
