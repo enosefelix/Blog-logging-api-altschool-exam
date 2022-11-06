@@ -155,7 +155,7 @@ async function editBlog(req, res) {
     var body = req.body.body
     var title = req.body.title
     var description = req.body.description
-    var tags = req.body.tags || `#${ title.toLowerCase()}`
+    var tags = req.body.tags || `#${ title}`
     var author = req.body.author
     var wpm = 225;
     if (body) {
@@ -179,10 +179,8 @@ async function deleteBlog(req, res) {
 
 async function getBlogById(req, res) {
     const { id } = req.params
-    console.log(`blog ${id}`)
     try {
         const blog = await blogModel.findById(id).populate('user')
-        console.log(blog)
         if (!blog) {
             return res.status(404).send("Could not find blog")
         }
