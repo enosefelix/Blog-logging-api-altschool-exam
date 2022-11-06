@@ -107,6 +107,8 @@ async function addBlog(req, res) {
         user.blogs.push(blog)
         blog.user = user
         await user.save()
+        await blog.save()
+        console.log
         return res.status(200).json({
             message: "blog added successfully",
             blog: {
@@ -177,8 +179,10 @@ async function deleteBlog(req, res) {
 
 async function getBlogById(req, res) {
     const { id } = req.params
+    console.log(`blog ${id}`)
     try {
         const blog = await blogModel.findById(id).populate('user')
+        console.log(blog)
         if (!blog) {
             return res.status(404).send("Could not find blog")
         }
@@ -188,6 +192,7 @@ async function getBlogById(req, res) {
         else {
             const userId = await blog.user._id
             const user = await userModel.findById(userId)
+            console.log(`user ${userId}`)
             blog.read_count++
             await blog.save()
             return res.status(200).json({
